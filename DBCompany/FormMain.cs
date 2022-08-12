@@ -48,7 +48,7 @@ namespace DBCompany
                 formSub.ShowDialog();
                 if(formSub.IsConfirmed)
                 {
-                    manipulator.ChangeRow(id, formSub.Employee);
+                    manipulator.ChangeRow(formSub.Employee);
                     FillDataGridView();
                 }
             }
