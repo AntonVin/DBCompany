@@ -30,12 +30,12 @@ namespace DBCompany
                 while (reader.Read())
                 {
                     int id = Convert.ToInt32(reader["Id"]);
-                    string lastName = reader["LastName"].ToString();
-                    string firstName = reader["FirstName"].ToString();
-                    string patronymic = reader["Patronymic"].ToString();
-                    string position = reader["Position"].ToString();
-                    string login = reader["Login"].ToString();
-                    string password = reader["Password"].ToString();
+                    string lastName = reader["LastName"].ToString() ?? "NULL";
+                    string firstName = reader["FirstName"].ToString() ?? "NULL";
+                    string patronymic = reader["Patronymic"].ToString() ?? "NULL";
+                    string position = reader["Position"].ToString() ?? "NULL";
+                    string login = reader["Login"].ToString() ?? "NULL";
+                    string password = reader["Password"].ToString() ?? "NULL";
 
                     outputList.Add(new Employee(id, lastName, firstName, patronymic, position, login, password));
                 }
@@ -56,10 +56,10 @@ namespace DBCompany
 
             command.ExecuteNonQuery();
         }
-        public void ChangeRow(Employee changedEmployee)
+        public void ChangeRow(int id,Employee changedEmployee)
         {
             string stringExpesstion = $"UPDATE {this.table} SET LastName=@LastName, FirstName=@FirstName, Patronymic=@Patronymic," +
-                                      $"Position = @Position, Login = @Login, Password=@Password WHERE Id={changedEmployee.Id}";
+                                      $"Position = @Position, Login = @Login, Password=@Password WHERE Id={id}";
             SqlCommand command = new SqlCommand(stringExpesstion, this.connection);
             SqlParameter lastNameParam = new SqlParameter("@LastName", changedEmployee.LastName);
             SqlParameter firstNameParam = new SqlParameter("@FirstName", changedEmployee.FirstName);
