@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtboxLastName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtboxFirstName = new System.Windows.Forms.TextBox();
@@ -42,21 +43,24 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.checkPass = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtboxLastName
             // 
             this.txtboxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtboxLastName.Location = new System.Drawing.Point(87, 12);
+            this.txtboxLastName.Location = new System.Drawing.Point(88, 12);
             this.txtboxLastName.Name = "txtboxLastName";
-            this.txtboxLastName.Size = new System.Drawing.Size(196, 23);
+            this.txtboxLastName.Size = new System.Drawing.Size(231, 23);
             this.txtboxLastName.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 12);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 15);
             this.label1.TabIndex = 1;
@@ -66,15 +70,15 @@
             // 
             this.txtboxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtboxFirstName.Location = new System.Drawing.Point(87, 41);
+            this.txtboxFirstName.Location = new System.Drawing.Point(88, 41);
             this.txtboxFirstName.Name = "txtboxFirstName";
-            this.txtboxFirstName.Size = new System.Drawing.Size(196, 23);
+            this.txtboxFirstName.Size = new System.Drawing.Size(231, 23);
             this.txtboxFirstName.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 44);
+            this.label2.Location = new System.Drawing.Point(8, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 15);
             this.label2.TabIndex = 1;
@@ -84,15 +88,15 @@
             // 
             this.txtboxPatronymic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtboxPatronymic.Location = new System.Drawing.Point(87, 70);
+            this.txtboxPatronymic.Location = new System.Drawing.Point(88, 70);
             this.txtboxPatronymic.Name = "txtboxPatronymic";
-            this.txtboxPatronymic.Size = new System.Drawing.Size(196, 23);
+            this.txtboxPatronymic.Size = new System.Drawing.Size(231, 23);
             this.txtboxPatronymic.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 73);
+            this.label3.Location = new System.Drawing.Point(8, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 1;
@@ -102,15 +106,15 @@
             // 
             this.txtboxPosition.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtboxPosition.Location = new System.Drawing.Point(87, 99);
+            this.txtboxPosition.Location = new System.Drawing.Point(88, 99);
             this.txtboxPosition.Name = "txtboxPosition";
-            this.txtboxPosition.Size = new System.Drawing.Size(196, 23);
+            this.txtboxPosition.Size = new System.Drawing.Size(231, 23);
             this.txtboxPosition.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 102);
+            this.label4.Location = new System.Drawing.Point(8, 102);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 15);
             this.label4.TabIndex = 1;
@@ -120,15 +124,15 @@
             // 
             this.txtboxLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtboxLogin.Location = new System.Drawing.Point(87, 128);
+            this.txtboxLogin.Location = new System.Drawing.Point(88, 128);
             this.txtboxLogin.Name = "txtboxLogin";
-            this.txtboxLogin.Size = new System.Drawing.Size(196, 23);
+            this.txtboxLogin.Size = new System.Drawing.Size(231, 23);
             this.txtboxLogin.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 131);
+            this.label5.Location = new System.Drawing.Point(8, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 15);
             this.label5.TabIndex = 1;
@@ -138,15 +142,15 @@
             // 
             this.txtboxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtboxPassword.Location = new System.Drawing.Point(87, 157);
+            this.txtboxPassword.Location = new System.Drawing.Point(88, 157);
             this.txtboxPassword.Name = "txtboxPassword";
-            this.txtboxPassword.Size = new System.Drawing.Size(196, 23);
+            this.txtboxPassword.Size = new System.Drawing.Size(231, 23);
             this.txtboxPassword.TabIndex = 5;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 160);
+            this.label6.Location = new System.Drawing.Point(8, 160);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 15);
             this.label6.TabIndex = 1;
@@ -156,9 +160,9 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.Location = new System.Drawing.Point(87, 186);
+            this.btnApply.Location = new System.Drawing.Point(88, 186);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(196, 53);
+            this.btnApply.Size = new System.Drawing.Size(231, 53);
             this.btnApply.TabIndex = 6;
             this.btnApply.Text = "Применить";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -168,17 +172,35 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(7, 207);
+            this.label7.Location = new System.Drawing.Point(8, 207);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 24);
             this.label7.TabIndex = 7;
             this.label7.Text = "*Обязательные\r\n поля";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // checkPass
+            // 
+            this.checkPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkPass.AutoSize = true;
+            this.checkPass.Location = new System.Drawing.Point(323, 159);
+            this.checkPass.Name = "checkPass";
+            this.checkPass.Size = new System.Drawing.Size(76, 34);
+            this.checkPass.TabIndex = 8;
+            this.checkPass.Text = "Показать\r\nпароль";
+            this.checkPass.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.checkPass.UseVisualStyleBackColor = true;
+            this.checkPass.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // FormInsert_Change
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 251);
+            this.ClientSize = new System.Drawing.Size(399, 271);
+            this.Controls.Add(this.checkPass);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.label6);
@@ -193,11 +215,14 @@
             this.Controls.Add(this.txtboxFirstName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtboxLastName);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormInsert_Change";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добаваление/Изменение";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +244,7 @@
         private Label label6;
         private Button btnApply;
         private Label label7;
+        private ErrorProvider errorProvider1;
+        private CheckBox checkPass;
     }
 }

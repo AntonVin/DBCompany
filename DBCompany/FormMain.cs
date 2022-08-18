@@ -20,14 +20,32 @@ namespace DBCompany
             InitializeComponent();
             FillDataGridView();
         }
-
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            int indexRow= dataGVEmployee.Rows.Count>0 ? dataGVEmployee.CurrentCell.RowIndex :0;
+            int indexColumn= dataGVEmployee.Rows.Count > 0 ? dataGVEmployee.CurrentCell.ColumnIndex : 0;
+            FillDataGridView();
+            if (dataGVEmployee.Rows.Count > 0)
+            {
+                if (indexRow + 1 <= dataGVEmployee.Rows.Count)
+                    dataGVEmployee.CurrentCell = dataGVEmployee.Rows[indexRow].Cells[indexColumn];
+                else dataGVEmployee.CurrentCell = dataGVEmployee.Rows[^1].Cells[indexColumn];
+            }
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var formSub = new FormInsert_Change(this,true);
-            formSub.ShowDialog();
-            if (formSub.IsConfirmed)
+            if (formSub.ShowDialog() == DialogResult.OK)
             {
                 manipulator.InsertRow(formSub.Employee);
+                //dataGVEmployee.Rows.Add(
+                //        formSub.Employee.Id, ---надо доработать Id
+                //        formSub.Employee.LastName,
+                //        formSub.Employee.FirstName,
+                //        formSub.Employee.Patronymic,
+                //        formSub.Employee.Position,
+                //        formSub.Employee.Login,
+                //        formSub.Employee.Password);
                 FillDataGridView();
             }
         }
@@ -37,19 +55,29 @@ namespace DBCompany
             {
                 DataGridViewRow dataGridViewRow = dataGVEmployee.CurrentRow;
                 int id = Convert.ToInt32(dataGridViewRow.Cells[0].Value);
-                string lastName = dataGridViewRow.Cells[1].Value.ToString();
-                string firstName = dataGridViewRow.Cells[2].Value.ToString();
-                string patronymic = dataGridViewRow.Cells[3].Value.ToString();
-                string position = dataGridViewRow.Cells[4].Value.ToString();
-                string login = dataGridViewRow.Cells[5].Value.ToString();
-                string password = dataGridViewRow.Cells[6].Value.ToString();
-                var formSub = new FormInsert_Change(this,false);
-                formSub.Employee = new Employee(id, lastName, firstName, patronymic, position, login, password);
-                formSub.ShowDialog();
-                if(formSub.IsConfirmed)
+                Employee? changedEmployee = manipulator.GetEmployeeById(id);
+                if (changedEmployee is null)
                 {
-                    manipulator.ChangeRow(id, formSub.Employee);
-                    FillDataGridView();
+                    DialogResult dialogResult = 
+                        MessageBox.Show("Данного сотрудника не существует - таблица больше не актуальна.\nОбновить таблицу?","ОШИБКА",
+                                        MessageBoxButtons.YesNo,MessageBoxIcon.Error);
+                    if (dialogResult == DialogResult.Yes)
+                        FillDataGridView();
+                    return;
+                }
+                var formSub = new FormInsert_Change(this, modeAdding: false);
+                formSub.Employee = changedEmployee;
+                if(formSub.ShowDialog() == DialogResult.OK)
+                {
+                    manipulator.ChangeRow(formSub.Employee);
+                    dataGridViewRow.SetValues(
+                        formSub.Employee.Id,
+                        formSub.Employee.LastName,
+                        formSub.Employee.FirstName,
+                        formSub.Employee.Patronymic,
+                        formSub.Employee.Position,
+                        formSub.Employee.Login,
+                        formSub.Employee.Password);
                 }
             }
         }
@@ -78,15 +106,9 @@ namespace DBCompany
                     employees[i].Position,
                     employees[i].Login,
                     employees[i].Password);
-                //если надо передвигать колонки, то можно так
-                //dataGVEmployee.Rows[rowNumber].Cells["Id"].Value = employees[i].Id;
-                //dataGVEmployee.Rows[rowNumber].Cells["LastName"].Value = employees[i].LastName;
-                //dataGVEmployee.Rows[rowNumber].Cells["FirstName"].Value = employees[i].FirstName;
-                //dataGVEmployee.Rows[rowNumber].Cells["Patronymic"].Value = employees[i].Patronymic;
-                //dataGVEmployee.Rows[rowNumber].Cells["Position"].Value = employees[i].Position;
-                //dataGVEmployee.Rows[rowNumber].Cells["Login"].Value = employees[i].Login;
-                //dataGVEmployee.Rows[rowNumber].Cells["Password"].Value = employees[i].Password;
             }
         }
+
+
     }
 }

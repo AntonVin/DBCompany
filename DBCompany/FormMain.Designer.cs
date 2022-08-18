@@ -34,6 +34,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGVEmployee = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,10 +47,10 @@
             // 
             // btnChange
             // 
-            this.btnChange.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnChange.Location = new System.Drawing.Point(773, 149);
+            this.btnChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChange.Location = new System.Drawing.Point(108, 412);
             this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(150, 100);
+            this.btnChange.Size = new System.Drawing.Size(90, 41);
             this.btnChange.TabIndex = 1;
             this.btnChange.Text = "Изменить запись";
             this.btnChange.UseVisualStyleBackColor = true;
@@ -57,10 +58,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnDelete.Location = new System.Drawing.Point(773, 269);
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(12, 412);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(150, 100);
+            this.btnDelete.Size = new System.Drawing.Size(90, 41);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Удалить запись";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -68,10 +69,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAdd.Location = new System.Drawing.Point(773, 30);
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Location = new System.Drawing.Point(204, 412);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(150, 100);
+            this.btnAdd.Size = new System.Drawing.Size(90, 41);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Добавить запись";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -80,7 +81,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 15);
             this.label1.TabIndex = 4;
@@ -103,11 +104,23 @@
             this.Position,
             this.Login,
             this.Password});
-            this.dataGVEmployee.Location = new System.Drawing.Point(12, 30);
+            this.dataGVEmployee.Location = new System.Drawing.Point(12, 27);
             this.dataGVEmployee.Name = "dataGVEmployee";
+            this.dataGVEmployee.ReadOnly = true;
             this.dataGVEmployee.RowTemplate.Height = 25;
-            this.dataGVEmployee.Size = new System.Drawing.Size(755, 413);
+            this.dataGVEmployee.Size = new System.Drawing.Size(848, 379);
             this.dataGVEmployee.TabIndex = 5;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdate.Location = new System.Drawing.Point(300, 412);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(90, 41);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Text = "ОБНОВИТЬ";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Id
             // 
@@ -115,50 +128,59 @@
             this.Id.Frozen = true;
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
             this.Id.Width = 42;
             // 
             // LastName
             // 
             this.LastName.HeaderText = "LastName";
             this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
             // 
             // FirstName
             // 
             this.FirstName.HeaderText = "FirstName";
             this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
             // 
             // Patronymic
             // 
             this.Patronymic.HeaderText = "Patronymic";
             this.Patronymic.Name = "Patronymic";
+            this.Patronymic.ReadOnly = true;
             // 
             // Position
             // 
             this.Position.HeaderText = "Position";
             this.Position.Name = "Position";
+            this.Position.ReadOnly = true;
             // 
             // Login
             // 
             this.Login.HeaderText = "Login";
             this.Login.Name = "Login";
+            this.Login.ReadOnly = true;
             // 
             // Password
             // 
             this.Password.HeaderText = "Password";
             this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
             // 
-            // Main
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 450);
+            this.ClientSize = new System.Drawing.Size(872, 465);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.dataGVEmployee);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnChange);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Main";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Работа с базой данных";
             ((System.ComponentModel.ISupportInitialize)(this.dataGVEmployee)).EndInit();
@@ -173,6 +195,7 @@
         private Button btnAdd;
         private Label label1;
         private DataGridView dataGVEmployee;
+        private Button btnUpdate;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn LastName;
         private DataGridViewTextBoxColumn FirstName;

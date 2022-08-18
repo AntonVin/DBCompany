@@ -10,12 +10,15 @@ namespace DBCompany
         static void Main()
         {
             string connectionString = "Server=localhost;Database=Company;Trusted_Connection=True;"; //MultipleActiveResultSets = true;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                var manipulator = new ManipulatorTableDB(connection, "Employees");
+                var manipulator = new ManipulatorTableDB(connectionString, "Employees");
                 ApplicationConfiguration.Initialize();
                 Application.Run(new FormMain(manipulator));
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message,"Œÿ»¡ ¿",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     }

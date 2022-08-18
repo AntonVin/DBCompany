@@ -8,7 +8,7 @@ namespace DBCompany
 {
     public class Employee
     {
-        public int? Id {get;}
+        public int Id {get;}
         public string LastName { get; }
         public string? FirstName { get; }
         public string? Patronymic { get; }
@@ -16,7 +16,7 @@ namespace DBCompany
         public string Login { get; }
         public string Password { get; }
 
-        public Employee(int? id,string lastName, string? firstName, string? patronymic, string? position, string login, string password)
+        public Employee(int id,string lastName, string? firstName, string? patronymic, string? position, string login, string password)
         {
             Id = id;
             LastName = lastName;

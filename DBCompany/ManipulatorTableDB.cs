@@ -9,43 +9,68 @@ namespace DBCompany
 {
     public class ManipulatorTableDB
     {
-        SqlConnection connection;
+        string connectionString;
         string table;
 
-        public ManipulatorTableDB(SqlConnection connection, string table)
+        public ManipulatorTableDB(string connectionString, string table)
         {
-            this.connection = connection;
+            this.connectionString = connectionString;
             this.table = table;
         }
 
         public List<Employee> GetDataList()
         {
+            using var connection = new SqlConnection(this.connectionString);
+            connection.Open();
+
             var outputList = new List<Employee>();
             string stringExpression = $"SELECT * FROM {this.table}";
 
-            var command = new SqlCommand(stringExpression, this.connection);
-
+            var command = new SqlCommand(stringExpression, connection);
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     int id = Convert.ToInt32(reader["Id"]);
-                    string lastName = reader["LastName"].ToString() ?? "NULL";
-                    string firstName = reader["FirstName"].ToString() ?? "NULL";
-                    string patronymic = reader["Patronymic"].ToString() ?? "NULL";
-                    string position = reader["Position"].ToString() ?? "NULL";
-                    string login = reader["Login"].ToString() ?? "NULL";
-                    string password = reader["Password"].ToString() ?? "NULL";
+                    string lastName = reader["LastName"].ToString();
+                    string firstName = reader["FirstName"].ToString();
+                    string patronymic = reader["Patronymic"].ToString();
+                    string position = reader["Position"].ToString();
+                    string login = reader["Login"].ToString();
+                    string password = reader["Password"].ToString();
 
                     outputList.Add(new Employee(id, lastName, firstName, patronymic, position, login, password));
                 }
             }
             return outputList;
         }
+        public Employee? GetEmployeeById(int id)
+        {
+            using var connection = new SqlConnection(this.connectionString);
+            connection.Open();
+
+            string stringExpression = $"SELECT * FROM {this.table} WHERE Id={id}";
+            var command = new SqlCommand(stringExpression, connection);
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read() == false) return null;
+                string lastName = reader["LastName"].ToString();
+                string firstName = reader["FirstName"].ToString();
+                string patronymic = reader["Patronymic"].ToString();
+                string position = reader["Position"].ToString();
+                string login = reader["Login"].ToString();
+                string password = reader["Password"].ToString();
+                return new Employee(id, lastName, firstName, patronymic, position, login, password);
+            }
+        }
         public void InsertRow(Employee newEmployee)
         {
+            using var connection = new SqlConnection(this.connectionString);
+            connection.Open();
+
             string stringExpesstion = $"INSERT {this.table} VALUES (@LastName, @FirstName, @Patronymic, @Position, @Login, @Password)";
-            SqlCommand command = new SqlCommand(stringExpesstion, this.connection);
+
+            SqlCommand command = new SqlCommand(stringExpesstion, connection);
             SqlParameter lastNameParam = new SqlParameter("@LastName", newEmployee.LastName);
             SqlParameter firstNameParam = new SqlParameter("@FirstName", newEmployee.FirstName);
             SqlParameter patronymicParam = new SqlParameter("@Patronymic", newEmployee.Patronymic);
@@ -56,11 +81,14 @@ namespace DBCompany
 
             command.ExecuteNonQuery();
         }
-        public void ChangeRow(int id,Employee changedEmployee)
+        public void ChangeRow(Employee changedEmployee)
         {
+            using var connection = new SqlConnection(this.connectionString);
+            connection.Open();
             string stringExpesstion = $"UPDATE {this.table} SET LastName=@LastName, FirstName=@FirstName, Patronymic=@Patronymic," +
-                                      $"Position = @Position, Login = @Login, Password=@Password WHERE Id={id}";
-            SqlCommand command = new SqlCommand(stringExpesstion, this.connection);
+                                      $"Position = @Position, Login = @Login, Password=@Password WHERE Id={changedEmployee.Id}";
+
+            SqlCommand command = new SqlCommand(stringExpesstion, connection);
             SqlParameter lastNameParam = new SqlParameter("@LastName", changedEmployee.LastName);
             SqlParameter firstNameParam = new SqlParameter("@FirstName", changedEmployee.FirstName);
             SqlParameter patronymicParam = new SqlParameter("@Patronymic", changedEmployee.Patronymic);
@@ -73,8 +101,12 @@ namespace DBCompany
         }
         public void DeleteRow(int id)
         {
+            using var connection = new SqlConnection(this.connectionString);
+            connection.Open();
+
             string stringExpesstion = $"DELETE FROM {this.table} WHERE Id={id}";
-            SqlCommand command = new SqlCommand(stringExpesstion, this.connection);
+
+            SqlCommand command = new SqlCommand(stringExpesstion, connection);
 
             command.ExecuteNonQuery();
         }
