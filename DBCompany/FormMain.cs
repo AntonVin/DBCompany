@@ -37,16 +37,16 @@ namespace DBCompany
             var formSub = new FormInsert_Change(this,true);
             if (formSub.ShowDialog() == DialogResult.OK)
             {
-                manipulator.InsertRow(formSub.Employee);
-                //dataGVEmployee.Rows.Add(
-                //        formSub.Employee.Id, ---надо доработать Id
-                //        formSub.Employee.LastName,
-                //        formSub.Employee.FirstName,
-                //        formSub.Employee.Patronymic,
-                //        formSub.Employee.Position,
-                //        formSub.Employee.Login,
-                //        formSub.Employee.Password);
-                FillDataGridView();
+                int id = manipulator.InsertRow(formSub.Employee);
+                dataGVEmployee.Rows.Add(
+                        id,
+                        formSub.Employee.LastName,
+                        formSub.Employee.FirstName,
+                        formSub.Employee.Patronymic,
+                        formSub.Employee.Position,
+                        formSub.Employee.Login,
+                        formSub.Employee.Password);
+                dataGVEmployee.CurrentCell = dataGVEmployee.Rows[^1].Cells[0];
             }
         }
         private void btnChange_Click(object sender, EventArgs e)
@@ -87,8 +87,18 @@ namespace DBCompany
             if (dataGVEmployee.Rows.Count > 0)
             {
                 int id = Convert.ToInt32(dataGVEmployee.CurrentRow.Cells["Id"].Value);
-                manipulator.DeleteRow(id);
-                FillDataGridView();
+                if (manipulator.DeleteRow(id) == false)
+                {
+                    DialogResult dialogResult =
+                        MessageBox.Show("Данный сотрудник уже удалён - таблица больше не актуальна.\nОбновить таблицу?", "ОШИБКА",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    if (dialogResult == DialogResult.Yes)
+                        FillDataGridView();
+                }
+                else
+                {
+                    dataGVEmployee.Rows.Remove(dataGVEmployee.CurrentRow);
+                }
             }
         }
 
