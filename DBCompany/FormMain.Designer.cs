@@ -35,13 +35,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGVEmployee = new System.Windows.Forms.DataGridView();
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGVEmployee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,20 +89,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGVEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGVEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGVEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.LastName,
-            this.FirstName,
-            this.Patronymic,
-            this.Position,
-            this.Login,
-            this.Password});
             this.dataGVEmployee.Location = new System.Drawing.Point(12, 27);
             this.dataGVEmployee.Name = "dataGVEmployee";
             this.dataGVEmployee.ReadOnly = true;
             this.dataGVEmployee.RowTemplate.Height = 25;
             this.dataGVEmployee.Size = new System.Drawing.Size(848, 379);
             this.dataGVEmployee.TabIndex = 5;
+            this.dataGVEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVEmployee_CellDoubleClick);
+            this.dataGVEmployee.Validated += new System.EventHandler(this.dataGVEmployee_Validated);
             // 
             // btnUpdate
             // 
@@ -121,52 +108,6 @@
             this.btnUpdate.Text = "ОБНОВИТЬ";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Id.Frozen = true;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 42;
-            // 
-            // LastName
-            // 
-            this.LastName.HeaderText = "LastName";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "FirstName";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // Patronymic
-            // 
-            this.Patronymic.HeaderText = "Patronymic";
-            this.Patronymic.Name = "Patronymic";
-            this.Patronymic.ReadOnly = true;
-            // 
-            // Position
-            // 
-            this.Position.HeaderText = "Position";
-            this.Position.Name = "Position";
-            this.Position.ReadOnly = true;
-            // 
-            // Login
-            // 
-            this.Login.HeaderText = "Login";
-            this.Login.Name = "Login";
-            this.Login.ReadOnly = true;
-            // 
-            // Password
-            // 
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Visible = false;
             // 
             // FormMain
             // 
@@ -196,12 +137,5 @@
         private Label label1;
         private DataGridView dataGVEmployee;
         private Button btnUpdate;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn LastName;
-        private DataGridViewTextBoxColumn FirstName;
-        private DataGridViewTextBoxColumn Patronymic;
-        private DataGridViewTextBoxColumn Position;
-        private DataGridViewTextBoxColumn Login;
-        private DataGridViewTextBoxColumn Password;
     }
 }

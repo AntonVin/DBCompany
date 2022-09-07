@@ -9,14 +9,14 @@ namespace DBCompany
         [STAThread]
         static void Main()
         {
-            string connectionString = "Server=localhost;Database=Company;Trusted_Connection=True;"; //MultipleActiveResultSets = true;
+            string connectionString = "Server=localhost;Database=Company;Trusted_Connection=True;Encrypt=False"; //MultipleActiveResultSets = true;
             try
             {
                 var manipulator = new ManipulatorTableDB(connectionString, "Employees");
                 ApplicationConfiguration.Initialize();
                 Application.Run(new FormMain(manipulator));
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message,"Œÿ»¡ ¿",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }

@@ -44,7 +44,7 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.checkPass = new System.Windows.Forms.CheckBox();
+            this.viewPass = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +54,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtboxLastName.Location = new System.Drawing.Point(88, 12);
             this.txtboxLastName.Name = "txtboxLastName";
-            this.txtboxLastName.Size = new System.Drawing.Size(231, 23);
+            this.txtboxLastName.Size = new System.Drawing.Size(195, 23);
             this.txtboxLastName.TabIndex = 0;
             // 
             // label1
@@ -72,7 +72,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtboxFirstName.Location = new System.Drawing.Point(88, 41);
             this.txtboxFirstName.Name = "txtboxFirstName";
-            this.txtboxFirstName.Size = new System.Drawing.Size(231, 23);
+            this.txtboxFirstName.Size = new System.Drawing.Size(195, 23);
             this.txtboxFirstName.TabIndex = 1;
             // 
             // label2
@@ -90,7 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtboxPatronymic.Location = new System.Drawing.Point(88, 70);
             this.txtboxPatronymic.Name = "txtboxPatronymic";
-            this.txtboxPatronymic.Size = new System.Drawing.Size(231, 23);
+            this.txtboxPatronymic.Size = new System.Drawing.Size(195, 23);
             this.txtboxPatronymic.TabIndex = 2;
             // 
             // label3
@@ -108,7 +108,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtboxPosition.Location = new System.Drawing.Point(88, 99);
             this.txtboxPosition.Name = "txtboxPosition";
-            this.txtboxPosition.Size = new System.Drawing.Size(231, 23);
+            this.txtboxPosition.Size = new System.Drawing.Size(195, 23);
             this.txtboxPosition.TabIndex = 3;
             // 
             // label4
@@ -126,7 +126,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtboxLogin.Location = new System.Drawing.Point(88, 128);
             this.txtboxLogin.Name = "txtboxLogin";
-            this.txtboxLogin.Size = new System.Drawing.Size(231, 23);
+            this.txtboxLogin.Size = new System.Drawing.Size(195, 23);
             this.txtboxLogin.TabIndex = 4;
             // 
             // label5
@@ -144,7 +144,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtboxPassword.Location = new System.Drawing.Point(88, 157);
             this.txtboxPassword.Name = "txtboxPassword";
-            this.txtboxPassword.Size = new System.Drawing.Size(231, 23);
+            this.txtboxPassword.Size = new System.Drawing.Size(195, 23);
             this.txtboxPassword.TabIndex = 5;
             // 
             // label6
@@ -160,9 +160,9 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.Location = new System.Drawing.Point(88, 186);
+            this.btnApply.Location = new System.Drawing.Point(88, 216);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(231, 53);
+            this.btnApply.Size = new System.Drawing.Size(195, 53);
             this.btnApply.TabIndex = 6;
             this.btnApply.Text = "Применить";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -182,25 +182,26 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // checkPass
+            // viewPass
             // 
-            this.checkPass.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkPass.AutoSize = true;
-            this.checkPass.Location = new System.Drawing.Point(323, 159);
-            this.checkPass.Name = "checkPass";
-            this.checkPass.Size = new System.Drawing.Size(76, 34);
-            this.checkPass.TabIndex = 8;
-            this.checkPass.Text = "Показать\r\nпароль";
-            this.checkPass.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.checkPass.UseVisualStyleBackColor = true;
-            this.checkPass.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.viewPass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.viewPass.AutoSize = true;
+            this.viewPass.Location = new System.Drawing.Point(88, 186);
+            this.viewPass.Name = "viewPass";
+            this.viewPass.Size = new System.Drawing.Size(119, 19);
+            this.viewPass.TabIndex = 8;
+            this.viewPass.Text = "Показать пароль";
+            this.viewPass.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.viewPass.UseVisualStyleBackColor = true;
+            this.viewPass.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // FormInsert_Change
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 271);
-            this.Controls.Add(this.checkPass);
+            this.ClientSize = new System.Drawing.Size(315, 281);
+            this.Controls.Add(this.viewPass);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.label6);
@@ -216,7 +217,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtboxLastName);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1000, 320);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 320);
             this.Name = "FormInsert_Change";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -245,6 +248,6 @@
         private Button btnApply;
         private Label label7;
         private ErrorProvider errorProvider1;
-        private CheckBox checkPass;
+        private CheckBox viewPass;
     }
 }

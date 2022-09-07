@@ -12,10 +12,12 @@ namespace DBCompany
 {
     public partial class FormInsert_Change : Form
     {
-        private bool modeAdding;
+        private DataController controller;
+        private ModeForm modeForm;
         private int idEmployee;
         private string currentLogin;
-        private List<string> logins;
+        private ManipulatorTableDB manipulator;
+
         public Employee Employee
         {
             get 
@@ -42,11 +44,18 @@ namespace DBCompany
                 txtboxPassword.Text = value.Password;
             }
         }
-        public FormInsert_Change(FormMain form, bool modeAdding)
+
+        public FormInsert_Change(FormMain form, ModeForm modeForm, ManipulatorTableDB manipulator)
         {
             InitializeComponent();
-            this.logins = form.Logins;
-            this.modeAdding = modeAdding;
+            this.modeForm = modeForm;
+            this.manipulator = manipulator;
+            this.controller = new DataController(manipulator);
+            SetForm();
+        }
+
+        private void SetForm()
+        {
             txtboxLastName.Validating += txtbox_Validaiting;
             txtboxLogin.Validating += txtbox_Validaiting;
             txtboxPassword.Validating += txtbox_Validaiting;
@@ -55,43 +64,47 @@ namespace DBCompany
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            string newLogin = txtboxLogin.Text;
-            if (this.modeAdding == true && this.logins.Contains(txtboxLogin.Text)
-                || (this.modeAdding == false && (this.logins.Contains(txtboxLogin.Text) && newLogin!=currentLogin)))
-            {
-                MessageBox.Show("Такой логин уже существует.");
-                txtboxLogin.Select();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtboxLastName.Text) ||
-                string.IsNullOrWhiteSpace(txtboxLogin.Text) || string.IsNullOrWhiteSpace(txtboxPassword.Text))
+            var txtBoxes = new TextBox[] { txtboxLastName, txtboxLogin, txtboxPassword };
+            if (txtBoxes.Any(box=>string.IsNullOrWhiteSpace(box.Text)))
             {
                 MessageBox.Show("Заполните обязательные поля");
-                txtbox_Validaiting(txtboxLastName, null);
-                txtbox_Validaiting(txtboxLogin, null);
-                txtbox_Validaiting(txtboxPassword, null);
+                foreach (TextBox txtBox in txtBoxes)
+                    txtbox_Validaiting(txtBox, null);
                 return;
             }
+
+            bool successedOperation = modeForm == ModeForm.Adding ?
+                                      controller.Insert(this.Employee):
+                                      controller.Change(this.Employee);
+            if (!successedOperation)
+            {
+                MessageBox.Show(controller.TextError,"Некорректный ввод данных",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
         private void txtbox_Validaiting(object sender, CancelEventArgs e)
         {
-            if(sender is TextBox txtBox)
-            if (String.IsNullOrEmpty(txtBox.Text))
+            if (sender is TextBox txtBox)
             {
-                errorProvider1.SetError(txtBox, "Не указано значение");
-            }
-            else
-            {
-                errorProvider1.SetError(txtBox, String.Empty);
+                string error = String.IsNullOrEmpty(txtBox.Text) ? 
+                               "Не указано значение" : String.Empty;
+                errorProvider1.SetError(txtBox, error);
             }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkPass.Checked) txtboxPassword.UseSystemPasswordChar = false;
-            else txtboxPassword.UseSystemPasswordChar = true;
+            txtboxPassword.UseSystemPasswordChar = !viewPass.Checked;
+        }
+
+        public enum ModeForm
+        {
+            Adding,
+            Changing
         }
     }
 }

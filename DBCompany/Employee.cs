@@ -16,15 +16,20 @@ namespace DBCompany
         public string Login { get; }
         public string Password { get; }
 
-        public Employee(int id,string lastName, string? firstName, string? patronymic, string? position, string login, string password)
+        public Employee(string lastName, string? firstName, string? patronymic, string? position, string login, string password)
         {
-            Id = id;
+            Id = -1;
             LastName = lastName;
             FirstName = firstName;
             Patronymic = patronymic;
             Position = position;
             Login = login;
             Password = password;
+        }
+        public Employee(int id,string lastName, string? firstName, string? patronymic, string? position, string login, string password)
+            :this(lastName,firstName,patronymic,position,login,password)
+        {
+            this.Id = id;
         }
     }
 }
