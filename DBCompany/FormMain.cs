@@ -14,8 +14,8 @@ namespace DBCompany
             InitializeComponent();
             dataGVEmployee.DataSource = manipulator.DataTable;
             manipulator.RefreshTable();
-            manipulator.DataTable.RowDeleting += new DataRowChangeEventHandler(this.EnablingButtons);
-            manipulator.DataTable.TableNewRow += new DataTableNewRowEventHandler(this.EnablingButtons);
+            manipulator.DataTable.RowDeleted += new(this.EnablingButtons);//DataRowChangeEventHandler
+            manipulator.DataTable.RowChanged += new(this.EnablingButtons);//DataTableNewRowEventHandler
             SetDataGridView(dataGVEmployee);
 #if DEBUG
             dataGVEmployee.Columns["Id"].Visible = true;
