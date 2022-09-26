@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBCompany;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,18 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBCompany.Views;
 
 namespace DBCompany
 {
-    public partial class FormInsert_Change : Form
+    public partial class FormInsert_Edit : Form
     {
-        private DataController controller;
         private ModeForm modeForm;
         private int idEmployee;
-        private string currentLogin;
-        private ManipulatorTableDB manipulator;
 
-        public Employee Employee
+
+        public event EventHandler ApplyEvent;
+
+         public Employee Employee
         {
             get 
             {
@@ -40,26 +42,15 @@ namespace DBCompany
                 txtboxPatronymic.Text = value.Patronymic;
                 txtboxPosition.Text = value.Position;
                 txtboxLogin.Text = value.Login;
-                currentLogin = value.Login;
                 txtboxPassword.Text = value.Password;
             }
         }
 
-        public FormInsert_Change(FormMain form, ModeForm modeForm, ManipulatorTableDB manipulator)
+        public FormInsert_Edit(ModeForm modeForm)
         {
             InitializeComponent();
             this.modeForm = modeForm;
-            this.manipulator = manipulator;
-            this.controller = new DataController(manipulator);
             SetForm();
-        }
-
-        private void SetForm()
-        {
-            txtboxLastName.Validating += txtbox_Validaiting;
-            txtboxLogin.Validating += txtbox_Validaiting;
-            txtboxPassword.Validating += txtbox_Validaiting;
-            txtboxPassword.UseSystemPasswordChar = true;
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -72,18 +63,8 @@ namespace DBCompany
                     txtbox_Validaiting(txtBox, null);
                 return;
             }
-
-            bool successedOperation = modeForm == ModeForm.Adding ?
-                                      controller.Insert(this.Employee):
-                                      controller.Change(this.Employee);
-            if (!successedOperation)
-            {
-                MessageBox.Show(controller.TextError,"Некорректный ввод данных",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            ApplyEvent?.Invoke(this,EventArgs.Empty);
+            //this.DialogResult = DialogResult.OK;
         }
 
         private void txtbox_Validaiting(object sender, CancelEventArgs e)
@@ -99,6 +80,35 @@ namespace DBCompany
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             txtboxPassword.UseSystemPasswordChar = !viewPass.Checked;
+        }
+
+
+        private void SetForm()
+        {
+            switch (modeForm)
+            {
+                case ModeForm.Adding:
+                    this.Text = "Добавление нового сотрудника";
+                    this.btnApply.Text = "Добавить";
+                    break;
+                case ModeForm.Changing:
+                    this.Text = "Изменение данных сотрудника";
+                    this.btnApply.Text = "Изменить";
+                    break;
+                default:
+                    break;
+            }
+
+            txtboxLastName.Validating += txtbox_Validaiting;
+            txtboxLogin.Validating += txtbox_Validaiting;
+            txtboxPassword.Validating += txtbox_Validaiting;
+            txtboxPassword.UseSystemPasswordChar = true;
+        }
+
+        public void ShowMessageError(string message)
+        {
+ 
+                MessageBox.Show(message, "Некорректный ввод данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public enum ModeForm

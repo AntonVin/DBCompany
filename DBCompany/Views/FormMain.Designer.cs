@@ -96,7 +96,6 @@
             this.dataGVEmployee.Size = new System.Drawing.Size(848, 379);
             this.dataGVEmployee.TabIndex = 5;
             this.dataGVEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGVEmployee_CellDoubleClick);
-            this.dataGVEmployee.Validated += new System.EventHandler(this.dataGVEmployee_Validated);
             // 
             // btnUpdate
             // 

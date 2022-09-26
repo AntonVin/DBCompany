@@ -1,4 +1,7 @@
 using System.Data.SqlClient;
+using DBCompany.Models;
+using DBCompany.Views;
+using DBCompany.Presenters;
 namespace DBCompany
 {
     internal static class Program
@@ -9,12 +12,14 @@ namespace DBCompany
         [STAThread]
         static void Main()
         {
-            string connectionString = "Server=localhost;Database=Company;Trusted_Connection=True;Encrypt=False"; //MultipleActiveResultSets = true;
+            string connectionString = "Server=localhost;Database=Company;Trusted_Connection=True;Encrypt=False";
             try
             {
-                var manipulator = new ManipulatorTableDB(connectionString, "Employees");
                 ApplicationConfiguration.Initialize();
-                Application.Run(new FormMain(manipulator));
+                var repository = new ModelEmployeeRepository(connectionString, "Employees");
+                var view = new FormMain();
+                var presenter = new EmployeePresenter(repository, view);
+                Application.Run(view);
             }
             catch (Exception ex)
             {

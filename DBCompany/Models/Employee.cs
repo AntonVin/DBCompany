@@ -8,13 +8,13 @@ namespace DBCompany
 {
     public class Employee
     {
-        public int Id {get;}
-        public string LastName { get; }
-        public string? FirstName { get; }
-        public string? Patronymic { get; }
-        public string? Position { get; }
-        public string Login { get; }
-        public string Password { get; }
+        public int Id { get; set; }
+        public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? Patronymic { get; set; }
+        public string? Position { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
 
         public Employee(string lastName, string? firstName, string? patronymic, string? position, string login, string password)
         {

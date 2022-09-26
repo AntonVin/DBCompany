@@ -1,6 +1,6 @@
 ﻿namespace DBCompany
 {
-    partial class FormInsert_Change
+    partial class FormInsert_Edit
     {
         /// <summary>
         /// Required designer variable.
@@ -196,7 +196,7 @@
             this.viewPass.UseVisualStyleBackColor = true;
             this.viewPass.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // FormInsert_Change
+            // FormInsert_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -220,7 +220,7 @@
             this.MaximumSize = new System.Drawing.Size(1000, 320);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 320);
-            this.Name = "FormInsert_Change";
+            this.Name = "FormInsert_Edit";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
